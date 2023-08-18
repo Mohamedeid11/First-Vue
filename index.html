@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3.0.1/dist/vue.global.js"></script>
+</head>
+<body>
+
+    <h1> Hello Vue </h1>
+    <div id="app">
+            <h3> {{ title }} - {{name}} - {{year}}</h3>
+
+            <button v-on:click="year++">Increase the date </button>
+            <button @click="year--">deccrease the date </button>
+            <p @click="changeTitle">Change Title</p>
+            <p @click="changeTitleParameter('something to write')">Change Title</p>
+
+            <div v-if="showElements">
+                <p>  {{ title }} - {{name}} - {{year}} </p>
+            </div>
+            
+            <button @click="toggleElement">
+                <span v-if="showElements"> Show Elements </span>  
+                <span v-else> Hide Elements </span>  
+            </button>
+            
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
