@@ -5,12 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://unpkg.com/vue@3.0.1/dist/vue.global.js"></script>
+    <style >
+
+        .body {
+            background: #eee;
+            max-width: 960px;
+            margin: 20px auto;
+        }
+
+        p, h1, ul {
+
+            margin: 0;
+            padding: 0;
+        }
+
+        li{
+            list-style-type: none;
+            background: #fff;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        li.fav{
+            background-color: #ff9ede;
+            color: white;
+        }
+
+    </style>
 </head>
 <body>
 
     <h1> Hello Vue </h1>
     <div id="app">
-            <h3> {{ title }} - {{name}} - {{year}}</h3>
+            <!-- <h3> {{ title }} - {{name}} - {{year}}</h3>
 
             <button v-on:click="year++">Increase the date </button>
             <button @click="year--">deccrease the date </button>
@@ -24,7 +54,48 @@
             <button @click="toggleElement">
                 <span v-if="showElements"> Show Elements </span>  
                 <span v-else> Hide Elements </span>  
-            </button>
+            </button> -->
+
+            <!-- <div class="box" @mouseover="handleEvent1">mouseover</div>
+            <div class="box" @mouseleave="handleEvent2($event ,'paramater')">mouseleave</div>
+            <div class="box" @dblclick="handleEvent3">double cleick</div>
+            <div class="box" @mousemove="MouseMove">Mouse Move {{ x }} - {{ y }}</div> -->
+            
+            <!-- attribute binding  -->
+            <!-- <a v-bind:href="url" target="_blank"> Google </a> -->
+            <br>
+
+            <div v-if="showElements">
+               <ul>
+                    <li v-for="book in books" :class="{ fav: book.isFav}" @click="toggleFav(book)">
+                        <img :src="book.image" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" :alt="book.title">
+                        <h1> {{book.title}} </h1>
+                        <p> {{book.author}} </p>
+                    </li>
+               </ul>
+            </div>
+            
+            <button @click="toggleElement">
+                <span v-if="showElements"> Hide Elements </span>  
+                <span v-else> Show Elements </span>  
+            </button> 
+
+            <br>
+
+            <div v-if="showFav">
+               <ul>
+                    <li v-for="book in filterFavBooks" :class="{ fav: book.isFav}" @click="toggleFav(book)">
+                        <img :src="book.image" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" :alt="book.title">
+                        <h1> {{book.title}} </h1>
+                        <p> {{book.author}} </p>
+                    </li>
+               </ul>
+            </div>
+            
+            <button @click="toggleAppearFav" v-if="filterFavBooks.length > 0">
+                <span  v-if="showFav"> Hide Favourite </span>  
+                <span v-else> Show Favourite </span>  
+            </button> 
             
     </div>
 
